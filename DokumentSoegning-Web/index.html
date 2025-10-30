@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Søg og filtrer SVOEM dokumenter">
+    <title>Dokumentsøgning - SVOEM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">📚 Dokumentsøgning</h1>
+                <p class="app-subtitle">SVOEM Regler og Vedtægter</p>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="container">
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Søg i dokumenter..."
+                        autocomplete="off"
+                    >
+                    <button id="clearSearch" class="clear-button" aria-label="Ryd søgning">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="m15 9-6 6m0-6 6 6"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Filter Chips -->
+                <div class="filter-chips-container">
+                    <button id="filterToggle" class="filter-chip filter-chip-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                        </svg>
+                        <span>Filtre</span>
+                        <span id="filterCount" class="filter-count hidden">0</span>
+                    </button>
+
+                    <div id="categoryChips" class="category-chips"></div>
+                </div>
+
+                <!-- Results Header -->
+                <div class="results-header">
+                    <span id="resultsCount" class="results-count">0 dokumenter</span>
+                    <div class="sort-dropdown">
+                        <button id="sortButton" class="sort-button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m3 16 4 4 4-4M7 20V4m10 4 4-4 4 4m-4-4v16"></path>
+                            </svg>
+                            <span id="sortLabel">Nyeste først</span>
+                        </button>
+                        <div id="sortMenu" class="sort-menu hidden">
+                            <button data-sort="newest">Nyeste først</button>
+                            <button data-sort="oldest">Ældste først</button>
+                            <button data-sort="alphabetical">Alfabetisk</button>
+                            <button data-sort="category">Efter kategori</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Panel -->
+        <aside id="filterPanel" class="filter-panel hidden">
+            <div class="filter-panel-content">
+                <div class="filter-panel-header">
+                    <h2>Filtre</h2>
+                    <button id="closeFilters" class="close-button" aria-label="Luk filtre">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6 6 18M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-title">Kategorier</h3>
+                    <div id="categoryFilters" class="filter-options"></div>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-title">Filtyper</h3>
+                    <div id="fileTypeFilters" class="filter-options"></div>
+                </div>
+
+                <div class="filter-actions">
+                    <button id="clearFilters" class="button button-secondary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                            <path d="M3 3v5h5"></path>
+                        </svg>
+                        Nulstil alle filtre
+                    </button>
+                    <button id="applyFilters" class="button button-primary">
+                        Anvend filtre
+                    </button>
+                </div>
+            </div>
+            <div id="filterOverlay" class="filter-overlay"></div>
+        </aside>
+
+        <!-- Document List -->
+        <main class="main-content">
+            <div class="container">
+                <div id="documentList" class="document-list"></div>
+                <div id="emptyState" class="empty-state hidden">
+                    <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <circle cx="12" cy="14" r="3"></circle>
+                    </svg>
+                    <h2 id="emptyTitle">Ingen dokumenter fundet</h2>
+                    <p id="emptyMessage">Prøv at ændre søgekriterierne eller filtrene</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Document Detail Modal -->
+        <div id="documentModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button id="closeModal" class="close-button" aria-label="Luk">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6 6 18M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="modalBody" class="modal-body"></div>
+            </div>
+            <div class="modal-overlay"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="container">
+                <p>&copy; 2024 SVOEM. Alle rettigheder forbeholdes.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
