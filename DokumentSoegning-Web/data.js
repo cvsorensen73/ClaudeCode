@@ -45,8 +45,8 @@ const FILE_TYPES = {
 const DOCUMENTS = [
     {
         id: '1',
-        titel: 'Adfærdskodes for SVOEM',
-        beskrivelse: 'Adfærdskodeks for alle grene af SVOEM.',
+        titel: 'Adfaerdskodes for SVOEM',
+        beskrivelse: 'Adfaerdskodeks for alle grene af SVOEM.',
         kategori: CATEGORIES.RETNINGSLINJER,
         url: 'https://www.svoem.org/_files/_database/database105/AdfrdskodeksSvmDanmark.pdf',
         filType: FILE_TYPES.PDF,
