@@ -82,5 +82,5 @@ const DOCUMENTS = [
         filType: FILE_TYPES.PDF,
         sidstOpdateret: new Date('2024-01-01'),
         tags: ['regler', 'svømning',  'world aquatics']
-    },
+    }
     ];
