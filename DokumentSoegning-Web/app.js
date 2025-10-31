@@ -234,10 +234,19 @@ function updateDocuments() {
 
     // Add matching sentences to filtered documents
     if (state.searchQuery) {
-        state.filteredDocuments = state.filteredDocuments.map(doc => ({
-            ...doc,
-            matchingSentences: findMatchingSentences(doc, state.searchQuery)
-        }));
+        state.filteredDocuments = state.filteredDocuments.map(doc => {
+            const matches = findMatchingSentences(doc, state.searchQuery);
+            return {
+                ...doc,
+                matchingSentences: matches.sentences,
+                relevanceScore: matches.score
+            };
+        });
+
+        // Sort by relevance score (higher score = more relevant)
+        state.filteredDocuments.sort((a, b) => {
+            return (b.relevanceScore || 0) - (a.relevanceScore || 0);
+        });
     }
 
     // Sort documents
@@ -248,24 +257,68 @@ function updateDocuments() {
     updateResultsCount();
 }
 
-// Find sentences containing the search query
+// Find sentences containing the search query with relevance scoring
 function findMatchingSentences(doc, query) {
-    if (!doc.content) return [];
+    if (!doc.content) return { sentences: [], score: 0 };
 
     const content = doc.content;
+    const queryLower = query.toLowerCase();
+
     // Split content into sentences (split by . ! ?)
     const sentences = content.split(/[.!?]+/).filter(s => s.trim().length > 0);
 
     const matches = [];
-    const queryLower = query.toLowerCase();
+    let totalScore = 0;
 
     sentences.forEach(sentence => {
-        if (sentence.toLowerCase().includes(queryLower)) {
-            matches.push(sentence.trim());
+        const sentenceLower = sentence.toLowerCase();
+
+        if (sentenceLower.includes(queryLower)) {
+            // Check if the match is in bold text (surrounded by **)
+            const isBoldMatch = checkBoldMatch(sentence, query);
+
+            // Calculate sentence score
+            let sentenceScore = 1; // Base score
+            if (isBoldMatch) {
+                sentenceScore = 10; // High priority for bold matches
+            }
+
+            // Add to total score
+            totalScore += sentenceScore;
+
+            matches.push({
+                text: sentence.trim(),
+                isBold: isBoldMatch,
+                score: sentenceScore
+            });
         }
     });
 
-    return matches.slice(0, 3); // Return max 3 matching sentences
+    // Sort matches by score (bold matches first)
+    matches.sort((a, b) => b.score - a.score);
+
+    return {
+        sentences: matches.map(m => m.text),
+        score: totalScore
+    };
+}
+
+// Check if the search query matches bold text
+function checkBoldMatch(sentence, query) {
+    const queryLower = query.toLowerCase();
+
+    // Find all bold text segments (text between **)
+    const boldRegex = /\*\*(.*?)\*\*/g;
+    let match;
+
+    while ((match = boldRegex.exec(sentence)) !== null) {
+        const boldText = match[1].toLowerCase();
+        if (boldText.includes(queryLower)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function sortDocuments() {
@@ -346,12 +399,18 @@ function createDocumentCard(doc) {
     `;
 }
 
-// Highlight search term in text
+// Highlight search term in text and render bold markers
 function highlightSearchTerm(text, searchTerm) {
-    if (!searchTerm) return text;
+    // First, convert **text** to <strong>text</strong>
+    let processedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-    const regex = new RegExp(`(${escapeRegex(searchTerm)})`, 'gi');
-    return text.replace(regex, '<mark class="highlight">$1</mark>');
+    // Then highlight the search term
+    if (searchTerm) {
+        const regex = new RegExp(`(${escapeRegex(searchTerm)})`, 'gi');
+        processedText = processedText.replace(regex, '<mark class="highlight">$1</mark>');
+    }
+
+    return processedText;
 }
 
 // Escape special regex characters

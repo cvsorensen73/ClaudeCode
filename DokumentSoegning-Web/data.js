@@ -85,6 +85,6 @@ const DOCUMENTS = [
         filType: FILE_TYPES.PDF,
         sidstOpdateret: new Date('2024-01-01'),
         tags: ['regler', 'svømning', 'world aquatics'],
-        content: 'WORLD AQUATICS SVØMMEREGLER. Alle discipliner skal svømmes i henhold til reglerne fastsat af World Aquatics. Crawl: Svømmeren skal hele tiden være i vandret stilling på maven. Brystsvømning: Skuldrene skal holdes i horisontal stilling. Butterfly: Begge arme skal føres frem over vandet samtidigt. Rygcrawl: Svømmeren skal ligge på ryggen gennem hele distancen. Ved vending og mål skal berøring ske med begge hænder samtidigt i brystsvømning og butterfly.'
+        content: 'WORLD AQUATICS SVØMMEREGLER. Alle discipliner skal svømmes i henhold til reglerne fastsat af World Aquatics. **SW 2.1.1** Når starteren har modtaget signal fra hovedtidstageren om, at tidtagerne er klar, skal starteren tage kontrol over **starten**. **SW 2.1.2** Fra **starten** og gennem løbet skal svømmeren svømme en distance på 50 meter. **SW 2.1.3** Crawl: Svømmeren skal hele tiden være i vandret stilling på maven fra **starten**. **SW 2.2** Brystsvømning: Skuldrene skal holdes i horisontal stilling. **SW 2.3** Butterfly: Begge arme skal føres frem over vandet samtidigt fra **starten**. **SW 2.4** Rygcrawl: Svømmeren skal ligge på ryggen gennem hele distancen. Ved vending og mål skal berøring ske med begge hænder samtidigt i brystsvømning og butterfly.'
     }
 ];
