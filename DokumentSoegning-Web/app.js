@@ -6,7 +6,8 @@ const state = {
     selectedCategories: new Set(),
     selectedFileTypes: new Set(),
     sortMethod: 'newest',
-    isFilterPanelOpen: false
+    isFilterPanelOpen: false,
+    fuse: null
 };
 
 // DOM Elements
@@ -38,6 +39,24 @@ const elements = {
 
 // Initialize App
 function init() {
+    // Initialize Fuse.js for fuzzy search
+    const fuseOptions = {
+        keys: [
+            { name: 'titel', weight: 0.3 },
+            { name: 'beskrivelse', weight: 0.2 },
+            { name: 'content', weight: 0.4 },
+            { name: 'tags', weight: 0.1 }
+        ],
+        threshold: 0.4,  // Lower = stricter matching (0.0 = exact, 1.0 = match anything)
+        distance: 100,   // How far to search for matches
+        minMatchCharLength: 2,
+        includeScore: true,
+        ignoreLocation: true,  // Search entire content, not just beginning
+        useExtendedSearch: false
+    };
+
+    state.fuse = new Fuse(state.documents, fuseOptions);
+
     renderCategoryChips();
     renderFilterOptions();
     updateDocuments();
@@ -204,17 +223,25 @@ function handleSort(sortMethod) {
 
 // Document Functions
 function updateDocuments() {
-    // Filter documents
-    state.filteredDocuments = state.documents.filter(doc => {
-        // Search filter
-        if (state.searchQuery) {
-            const content = doc.content || '';
-            const searchableText = `${doc.titel} ${doc.beskrivelse} ${doc.tags.join(' ')} ${content}`.toLowerCase();
-            if (!searchableText.includes(state.searchQuery)) {
-                return false;
-            }
-        }
+    let documentsToFilter;
 
+    // Use Fuse.js for search if there's a query
+    if (state.searchQuery && state.searchQuery.trim().length >= 2) {
+        // Perform fuzzy search with Fuse.js
+        const fuseResults = state.fuse.search(state.searchQuery);
+
+        // Extract documents from Fuse results and add Fuse scores
+        documentsToFilter = fuseResults.map(result => ({
+            ...result.item,
+            fuseScore: result.score // Lower score = better match in Fuse
+        }));
+    } else {
+        // No search query - use all documents
+        documentsToFilter = state.documents.map(doc => ({ ...doc, fuseScore: null }));
+    }
+
+    // Apply category and file type filters
+    state.filteredDocuments = documentsToFilter.filter(doc => {
         // Category filter
         if (state.selectedCategories.size > 0) {
             if (!state.selectedCategories.has(doc.kategori.name)) {
@@ -232,25 +259,37 @@ function updateDocuments() {
         return true;
     });
 
-    // Add matching sentences to filtered documents
-    if (state.searchQuery) {
+    // Add matching sentences and calculate combined relevance score
+    if (state.searchQuery && state.searchQuery.trim().length >= 2) {
         state.filteredDocuments = state.filteredDocuments.map(doc => {
             const matches = findMatchingSentences(doc, state.searchQuery);
+
+            // Combine Fuse score with bold text score
+            // Fuse score: 0.0 (perfect) to 1.0 (poor)
+            // Bold score: higher is better
+            // Convert Fuse score to 0-100 scale and invert (100 = best)
+            const fuseRelevance = doc.fuseScore !== null ? (1 - doc.fuseScore) * 100 : 50;
+            const boldRelevance = matches.score;
+
+            // Combined score: Bold text gets heavy weight
+            const combinedScore = (boldRelevance * 10) + fuseRelevance;
+
             return {
                 ...doc,
                 matchingSentences: matches.sentences,
-                relevanceScore: matches.score
+                relevanceScore: combinedScore,
+                fuseScore: doc.fuseScore
             };
         });
 
-        // Sort by relevance score (higher score = more relevant)
+        // Sort by combined relevance score (higher = better)
         state.filteredDocuments.sort((a, b) => {
             return (b.relevanceScore || 0) - (a.relevanceScore || 0);
         });
+    } else {
+        // No search query - use default sorting
+        sortDocuments();
     }
-
-    // Sort documents
-    sortDocuments();
 
     // Render
     renderDocuments();
