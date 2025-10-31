@@ -726,6 +726,45 @@ body {
     color: var(--color-gray-700);
 }
 
+/* ===== Matching Content (Search Results) ===== */
+.matching-content {
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-gray-200);
+}
+
+.matching-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-sm);
+}
+
+.matching-sentence {
+    font-size: 0.875rem;
+    color: var(--color-gray-700);
+    line-height: 1.6;
+    margin-bottom: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(37, 99, 235, 0.05);
+    border-left: 3px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+}
+
+.matching-sentence:last-child {
+    margin-bottom: 0;
+}
+
+.highlight {
+    background: #fef08a;
+    color: var(--color-gray-900);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.125rem;
+    font-weight: 600;
+}
+
 /* ===== Empty State ===== */
 .empty-state {
     text-align: center;

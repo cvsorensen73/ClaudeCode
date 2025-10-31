@@ -208,7 +208,8 @@ function updateDocuments() {
     state.filteredDocuments = state.documents.filter(doc => {
         // Search filter
         if (state.searchQuery) {
-            const searchableText = `${doc.titel} ${doc.beskrivelse} ${doc.tags.join(' ')}`.toLowerCase();
+            const content = doc.content || '';
+            const searchableText = `${doc.titel} ${doc.beskrivelse} ${doc.tags.join(' ')} ${content}`.toLowerCase();
             if (!searchableText.includes(state.searchQuery)) {
                 return false;
             }
@@ -231,12 +232,40 @@ function updateDocuments() {
         return true;
     });
 
+    // Add matching sentences to filtered documents
+    if (state.searchQuery) {
+        state.filteredDocuments = state.filteredDocuments.map(doc => ({
+            ...doc,
+            matchingSentences: findMatchingSentences(doc, state.searchQuery)
+        }));
+    }
+
     // Sort documents
     sortDocuments();
 
     // Render
     renderDocuments();
     updateResultsCount();
+}
+
+// Find sentences containing the search query
+function findMatchingSentences(doc, query) {
+    if (!doc.content) return [];
+
+    const content = doc.content;
+    // Split content into sentences (split by . ! ?)
+    const sentences = content.split(/[.!?]+/).filter(s => s.trim().length > 0);
+
+    const matches = [];
+    const queryLower = query.toLowerCase();
+
+    sentences.forEach(sentence => {
+        if (sentence.toLowerCase().includes(queryLower)) {
+            matches.push(sentence.trim());
+        }
+    });
+
+    return matches.slice(0, 3); // Return max 3 matching sentences
 }
 
 function sortDocuments() {
@@ -283,6 +312,16 @@ function renderDocuments() {
 }
 
 function createDocumentCard(doc) {
+    const matchingContent = doc.matchingSentences && doc.matchingSentences.length > 0
+        ? `
+            <div class="matching-content">
+                <div class="matching-label">📍 Fundne sætninger:</div>
+                ${doc.matchingSentences.map(sentence =>
+                    `<p class="matching-sentence">${highlightSearchTerm(sentence, state.searchQuery)}</p>`
+                ).join('')}
+            </div>
+        ` : '';
+
     return `
         <div class="document-card" data-id="${doc.id}">
             <div class="document-card-header">
@@ -292,6 +331,7 @@ function createDocumentCard(doc) {
                 <div class="document-content">
                     <h3 class="document-title">${doc.titel}</h3>
                     <p class="document-description">${doc.beskrivelse}</p>
+                    ${matchingContent}
                 </div>
             </div>
             <div class="document-meta">
@@ -304,6 +344,19 @@ function createDocumentCard(doc) {
             </div>
         </div>
     `;
+}
+
+// Highlight search term in text
+function highlightSearchTerm(text, searchTerm) {
+    if (!searchTerm) return text;
+
+    const regex = new RegExp(`(${escapeRegex(searchTerm)})`, 'gi');
+    return text.replace(regex, '<mark class="highlight">$1</mark>');
+}
+
+// Escape special regex characters
+function escapeRegex(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 function updateResultsCount() {
