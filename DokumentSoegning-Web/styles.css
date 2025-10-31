@@ -765,6 +765,26 @@ body {
     border-radius: 0.25rem;
 }
 
+.quick-open-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-primary);
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.quick-open-link:hover {
+    background: var(--color-primary-dark);
+    transform: translateX(2px);
+}
+
 .highlight {
     background: #fef08a;
     color: var(--color-gray-900);

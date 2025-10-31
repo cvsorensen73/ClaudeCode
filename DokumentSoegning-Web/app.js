@@ -404,6 +404,8 @@ function renderDocuments() {
 }
 
 function createDocumentCard(doc) {
+    const documentUrl = buildDocumentUrl(doc, state.searchQuery);
+
     const matchingContent = doc.matchingSentences && doc.matchingSentences.length > 0
         ? `
             <div class="matching-content">
@@ -411,6 +413,11 @@ function createDocumentCard(doc) {
                 ${doc.matchingSentences.map(sentence =>
                     `<p class="matching-sentence">${highlightSearchTerm(sentence, state.searchQuery)}</p>`
                 ).join('')}
+                ${state.searchQuery ? `
+                    <a href="${documentUrl}" target="_blank" rel="noopener noreferrer" class="quick-open-link" onclick="event.stopPropagation()">
+                        🔗 Åbn ved søgeord
+                    </a>
+                ` : ''}
             </div>
         ` : '';
 
@@ -527,6 +534,21 @@ function renderFilterOptions() {
     });
 }
 
+// Build document URL with search parameter for PDF deep linking
+function buildDocumentUrl(doc, searchQuery) {
+    let url = doc.url;
+
+    // Add PDF search parameter if there's a search query
+    if (searchQuery && searchQuery.trim().length >= 2) {
+        // PDF open parameter: #search="searchterm"
+        // URL encode the search term
+        const encodedSearch = encodeURIComponent(searchQuery.trim());
+        url += `#search="${encodedSearch}"`;
+    }
+
+    return url;
+}
+
 // Modal Functions
 function openDocumentModal(doc) {
     const formattedDate = new Intl.DateTimeFormat('da-DK', {
@@ -534,6 +556,9 @@ function openDocumentModal(doc) {
         month: 'long',
         day: 'numeric'
     }).format(doc.sidstOpdateret);
+
+    // Build URL with search parameter
+    const documentUrl = buildDocumentUrl(doc, state.searchQuery);
 
     elements.modalBody.innerHTML = `
         <div class="modal-document-icon" data-category="${doc.kategori.name}">
@@ -548,6 +573,17 @@ function openDocumentModal(doc) {
                 📄 ${doc.filType}
             </span>
         </div>
+        ${state.searchQuery ? `
+            <div class="modal-section">
+                <h3 class="modal-section-title">Søger efter</h3>
+                <p class="modal-section-content">
+                    <mark class="highlight">${state.searchQuery}</mark>
+                    <span style="color: var(--color-gray-500); font-size: 0.875rem; margin-left: 0.5rem;">
+                        📍 Dokumentet åbnes ved søgeresultatet
+                    </span>
+                </p>
+            </div>
+        ` : ''}
         <div class="modal-section">
             <h3 class="modal-section-title">Beskrivelse</h3>
             <p class="modal-section-content">${doc.beskrivelse}</p>
@@ -565,14 +601,14 @@ function openDocumentModal(doc) {
             </div>
         ` : ''}
         <div class="modal-actions">
-            <a href="${doc.url}" target="_blank" rel="noopener noreferrer" class="button-link">
+            <a href="${documentUrl}" target="_blank" rel="noopener noreferrer" class="button-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
                 </svg>
-                Åbn dokument
+                Åbn dokument${state.searchQuery ? ' ved søgeord' : ''}
             </a>
-            <button class="button-share" onclick="shareDocument('${doc.titel}', '${doc.url}')">
+            <button class="button-share" onclick="shareDocument('${doc.titel}', '${documentUrl}')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="18" cy="5" r="3"></circle>
                     <circle cx="6" cy="12" r="3"></circle>
