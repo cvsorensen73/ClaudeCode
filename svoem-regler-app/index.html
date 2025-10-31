@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Søg i regler og vedtægter fra Dansk Svømme Union">
+    <meta name="theme-color" content="#0066cc">
+    <title>Svøm Danmark - Regelsøgning</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- PDF.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <!-- Lunr.js for full-text search -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>🏊‍♂️ Svøm Danmark</h1>
+                <p class="subtitle">Regelsøgning</p>
+            </div>
+        </header>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="loading-indicator">
+            <div class="spinner"></div>
+            <p>Indlæser regeldokumenter...</p>
+            <p class="loading-status" id="loadingStatus"></p>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-section" id="searchSection" style="display: none;">
+            <div class="search-box">
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Søg i regler og vedtægter..."
+                    autocomplete="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                >
+                <button id="searchButton" class="search-button">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Filter Chips -->
+            <div class="filter-chips" id="filterChips">
+                <button class="chip active" data-filter="all">Alle</button>
+                <button class="chip" data-filter="SW">SW-regler</button>
+                <button class="chip" data-filter="vedtægter">Vedtægter</button>
+            </div>
+
+            <!-- Results Count -->
+            <div class="results-info" id="resultsInfo" style="display: none;">
+                <span id="resultsCount"></span>
+            </div>
+
+            <!-- Search Results -->
+            <div class="results-container" id="resultsContainer"></div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                    <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                    <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <h3>Søg i regeldokumenter</h3>
+                <p>Indtast søgeord for at finde relevante regler og bestemmelser</p>
+            </div>
+
+            <!-- No Results -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M8 15s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <h3>Ingen resultater</h3>
+                <p>Prøv med andre søgeord</p>
+            </div>
+        </div>
+
+        <!-- Document Viewer Modal -->
+        <div class="modal" id="documentModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle"></h2>
+                    <button class="close-button" id="closeModal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <div class="document-info">
+                        <p><strong>Dokument:</strong> <span id="docName"></span></p>
+                        <p><strong>Side:</strong> <span id="pageNumber"></span></p>
+                    </div>
+                    <div class="document-content" id="documentContent"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Dansk Svømme Union (Svøm Danmark)</p>
+            <p class="footer-small">Dokumenter indekseret: <span id="docCount">0</span></p>
+        </footer>
+    </div>
+
+    <script src="documents-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

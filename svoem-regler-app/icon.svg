@@ -1,0 +1,31 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#0066cc" rx="80"/>
+
+  <!-- Wave pattern (stylized swimming pool) -->
+  <path d="M0 350 Q128 320 256 350 T512 350 L512 512 L0 512 Z" fill="#00a8e8" opacity="0.6"/>
+  <path d="M0 380 Q128 350 256 380 T512 380 L512 512 L0 512 Z" fill="#00a8e8" opacity="0.4"/>
+
+  <!-- Swimmer icon -->
+  <g transform="translate(256 200)">
+    <!-- Head -->
+    <circle cx="0" cy="-30" r="30" fill="white"/>
+
+    <!-- Body -->
+    <ellipse cx="0" cy="10" rx="50" ry="25" fill="white"/>
+
+    <!-- Arms (swimming motion) -->
+    <path d="M-45 5 Q-80 -10 -100 -5" stroke="white" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <path d="M45 5 Q80 20 100 15" stroke="white" stroke-width="12" stroke-linecap="round" fill="none"/>
+
+    <!-- Legs -->
+    <path d="M-20 30 Q-30 50 -25 65" stroke="white" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <path d="M20 30 Q30 50 25 65" stroke="white" stroke-width="12" stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- Search icon -->
+  <g transform="translate(400 100)">
+    <circle cx="0" cy="0" r="35" fill="none" stroke="white" stroke-width="8"/>
+    <line x1="25" y1="25" x2="45" y2="45" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>

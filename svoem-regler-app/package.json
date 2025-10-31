@@ -1,0 +1,21 @@
+{
+  "name": "svoem-regler-app",
+  "version": "1.0.0",
+  "description": "Mobil web app til søgning i Svøm Danmarks regler og vedtægter",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "svømning",
+    "regler",
+    "søgning",
+    "dansk",
+    "mobile"
+  ],
+  "author": "Svøm Danmark",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
