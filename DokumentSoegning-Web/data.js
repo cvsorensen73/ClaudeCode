@@ -47,7 +47,7 @@ const DOCUMENTS = [
         id: '1',
         titel: 'Adfærdskodes for SVOEM',
         beskrivelse: 'Adfærdskodeks for alle grene af SVOEM.',
-        kategori: CATEGORIES.RETNINGLINJER,
+        kategori: CATEGORIES.RETNINGSLINJER,
         url: 'https://www.svoem.org/_files/_database/database105/AdfrdskodeksSvmDanmark.pdf',
         filType: FILE_TYPES.PDF,
         sidstOpdateret: new Date('2015-10-01'),
@@ -81,6 +81,6 @@ const DOCUMENTS = [
         url: 'https://www.svoem.org/_files/_database/database105/WorldAquaticsSvoemmereglerjanuar2024.pdf',
         filType: FILE_TYPES.PDF,
         sidstOpdateret: new Date('2024-01-01'),
-        tags: ['regler', 'svømning',  'world aquatics']
+        tags: ['regler', 'svømning', 'world aquatics']
     }
-    ];
+];
