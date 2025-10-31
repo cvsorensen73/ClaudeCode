@@ -22,6 +22,13 @@ async function initializeApp() {
         // Load and index all documents
         await loadDocuments();
 
+        // Check if any documents were loaded
+        if (appState.documents.length === 0) {
+            showError('Ingen dokumenter kunne indlæses',
+                'Tjek at PDF-URL\'erne i documents-config.js er korrekte. Se browser-konsollen (F12) for detaljer.');
+            return;
+        }
+
         // Build search index
         buildSearchIndex();
 
@@ -35,10 +42,11 @@ async function initializeApp() {
         // Update document count
         document.getElementById('docCount').textContent = appState.documents.length;
 
-        console.log('App initialized successfully');
+        console.log(`✓ App initialiseret succesfuldt med ${appState.documents.length} dokumenter`);
+        console.log(`✓ Søgeindeks indeholder ${appState.flatDocuments.length} sider`);
     } catch (error) {
-        console.error('Error initializing app:', error);
-        updateLoadingStatus('Fejl ved indlæsning. Prøv venligst igen.');
+        console.error('✗ Kritisk fejl ved initialisering:', error);
+        showError('Fejl ved indlæsning', error.message);
     }
 }
 
@@ -46,6 +54,7 @@ async function initializeApp() {
 async function loadDocuments() {
     const totalDocs = pdfDocuments.length;
     let loadedDocs = 0;
+    let failedDocs = [];
 
     for (const pdfDoc of pdfDocuments) {
         try {
@@ -61,11 +70,32 @@ async function loadDocuments() {
             });
 
             loadedDocs++;
+            console.log(`✓ Succesfuldt indlæst: ${pdfDoc.name} (${pages.length} sider)`);
             updateLoadingStatus(`Indlæst ${loadedDocs}/${totalDocs} dokumenter`);
         } catch (error) {
-            console.error(`Error loading ${pdfDoc.name}:`, error);
+            console.error(`✗ Fejl ved indlæsning af ${pdfDoc.name}:`, error);
+            failedDocs.push({ name: pdfDoc.name, url: pdfDoc.url, error: error.message });
             // Continue loading other documents even if one fails
         }
+    }
+
+    // Log summary
+    console.log(`\n=== INDLÆSNINGS RESUMÉ ===`);
+    console.log(`Totalt forsøgt: ${totalDocs}`);
+    console.log(`Succesfuldt indlæst: ${loadedDocs}`);
+    console.log(`Fejlede: ${failedDocs.length}`);
+
+    if (failedDocs.length > 0) {
+        console.log(`\nFejlede dokumenter:`);
+        failedDocs.forEach(doc => {
+            console.log(`- ${doc.name}`);
+            console.log(`  URL: ${doc.url}`);
+            console.log(`  Fejl: ${doc.error}`);
+        });
+    }
+
+    if (loadedDocs === 0) {
+        throw new Error('Ingen dokumenter kunne indlæses. Tjek PDF-URL\'erne i documents-config.js');
     }
 }
 
@@ -371,6 +401,29 @@ function showNoResults() {
     document.getElementById('emptyState').style.display = 'none';
     document.getElementById('noResults').style.display = 'flex';
     document.getElementById('resultsInfo').style.display = 'none';
+}
+
+function showError(title, message) {
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    loadingIndicator.innerHTML = `
+        <div style="text-align: center; padding: 40px 20px;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" style="color: #ff3d00; margin-bottom: 16px;">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <h3 style="color: #1a1a1a; margin-bottom: 8px;">${title}</h3>
+            <p style="color: #666666; margin-bottom: 16px;">${message}</p>
+            <button onclick="location.reload()" style="
+                background: #0066cc;
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                border-radius: 8px;
+                font-size: 14px;
+                cursor: pointer;
+            ">Genindlæs siden</button>
+        </div>
+    `;
 }
 
 function debounce(func, wait) {

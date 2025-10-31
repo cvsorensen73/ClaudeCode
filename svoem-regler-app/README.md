@@ -2,6 +2,17 @@
 
 En mobil-optimeret web-applikation til søgning i Dansk Svømme Unions regler og vedtægter.
 
+## ⚠️ VIGTIGT - Først læsning
+
+**Søgningen returnerer ingen resultater for "butterfly" eller "SW 4.4"?**
+
+Dette er normalt! Appen er konfigureret med en **test-PDF** for at demonstrere funktionaliteten.
+
+**For at søge i Svøm Danmark regler:**
+1. Læs **QUICK_START.md** for hurtig vejledning
+2. Tilføj rigtige PDF-URL'er i `documents-config.js`
+3. Se browser-konsollen (F12) for indlæsnings-status
+
 ## 📱 Funktioner
 
 - **Mobil-først design**: Optimeret til iPhone 14 og andre mobile enheder

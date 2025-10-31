@@ -1,5 +1,11 @@
 # Instruktioner til at finde de rigtige PDF-URL'er
 
+## ⚠️ VIGTIGT
+
+Appen er lige nu konfigureret med en **test-PDF** for at demonstrere funktionaliteten. Denne test-PDF indeholder ikke Svøm Danmark regler.
+
+For at søge efter "butterfly", "SW 4.4" osv., skal du først tilføje de rigtige PDF-dokumenter fra Svøm Danmark.
+
 Da websitet https://www.svoem.org/Redskaber/Regler-og-vedtaegter/ har beskyttelse mod automatisk adgang, skal du manuelt finde de korrekte PDF-URL'er.
 
 ## 📋 Trin-for-trin vejledning

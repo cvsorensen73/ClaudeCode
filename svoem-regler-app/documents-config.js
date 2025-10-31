@@ -1,85 +1,106 @@
-// PDF Documents Configuration
-// Add or modify PDF documents here
-// To add a new document, copy the template below and fill in the details
+// TEST KONFIGURATION - Demo PDF for at teste funktionaliteten
+// Denne fil indeholder en test-PDF der garanteret virker
 
 const documentsConfig = [
+    // TEST PDF - PDF.js test dokument
     {
+        name: 'Test PDF - PDF.js Eksempel',
+        url: 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf',
+        category: 'Test',
+        type: 'Demo',
+        description: 'Test dokument til at verificere PDF-indlæsning'
+    }
+
+    /*
+    ===================================================================
+    SVØM DANMARK DOKUMENTER
+    ===================================================================
+
+    For at tilføje de rigtige Svøm Danmark dokumenter, skal du:
+
+    1. Gå til: https://www.svoem.org/Redskaber/Regler-og-vedtaegter/
+    2. Find hvert dokument på siden
+    3. Højreklik på download-linket
+    4. Vælg "Kopier link-adresse"
+    5. Tilføj dokumentet nedenfor ved at fjerne kommentaren og indsætte URL'en
+
+    Eksempel på hvordan du tilføjer et dokument:
+
+    ,{
         name: 'SW - Svømmeregler 2022-2025',
-        url: 'https://www.svoem.org/media/9686/sw-svoemmeregler-2022-2025-opdateret-18-maj-2023.pdf',
+        url: 'https://www.svoem.org/media/XXXX/filnavn.pdf',
         category: 'SW',
         type: 'Svømmeregler',
         description: 'Officielle svømmeregler for konkurrencer'
-    },
-    {
+    }
+
+    ===================================================================
+    DOKUMENTER AT TILFØJE:
+    ===================================================================
+
+    Kommentér disse ind og opdater URL'erne:
+
+    ,{
+        name: 'SW - Svømmeregler',
+        url: 'URL_HER',
+        category: 'SW',
+        type: 'Svømmeregler',
+        description: 'Officielle svømmeregler - indeholder butterfly, brystsvømning, rygsvømning, fri svømning'
+    }
+    ,{
         name: 'SW 10 - Automatisk officielt tidtagningsudstyr',
-        url: 'https://www.svoem.org/media/9687/sw-10-automatisk-officielt-tidtagningsudstyr.pdf',
+        url: 'URL_HER',
         category: 'SW',
         type: 'Teknisk',
         description: 'Regler for automatisk tidtagning'
-    },
-    {
-        name: 'Vedtægter for Dansk Svømme Union 2023',
-        url: 'https://www.svoem.org/media/9688/vedtaegter-for-dansk-svomme-union-2023.pdf',
+    }
+    ,{
+        name: 'Vedtægter for Dansk Svømme Union',
+        url: 'URL_HER',
         category: 'Vedtægter',
         type: 'Organisatorisk',
         description: 'Foreningens officielle vedtægter'
-    },
-    {
+    }
+    ,{
         name: 'FR - Frit Vands Regler',
-        url: 'https://www.svoem.org/media/9689/fr-frit-vands-regler.pdf',
+        url: 'URL_HER',
         category: 'FR',
         type: 'Specialregler',
         description: 'Regler for langdistancesvømning'
-    },
-    {
+    }
+    ,{
         name: 'Konkurrencebestemmelser',
-        url: 'https://www.svoem.org/media/9690/konkurrencebestemmelser.pdf',
+        url: 'URL_HER',
         category: 'Konkurrence',
         type: 'Bestemmelser',
         description: 'Generelle bestemmelser for konkurrencer'
-    },
-    {
+    }
+    ,{
         name: 'GR - Generalforsamlingsregler',
-        url: 'https://www.svoem.org/media/9691/gr-generalforsamlingsregler.pdf',
+        url: 'URL_HER',
         category: 'GR',
         type: 'Organisatorisk',
         description: 'Regler for afholdelse af generalforsamling'
-    },
-    {
-        name: 'C - Coaching Code',
-        url: 'https://www.svoem.org/media/9692/c-coaching-code.pdf',
+    }
+    ,{
+        name: 'Coaching Code',
+        url: 'URL_HER',
         category: 'Coaching',
         type: 'Etik',
         description: 'Etiske retningslinjer for trænere'
     }
 
-    /*
-    Template for adding new documents:
+    ===================================================================
+    VIGTIG INFORMATION:
+    ===================================================================
 
-    {
-        name: 'Document Title',
-        url: 'https://www.svoem.org/media/XXXX/filename.pdf',
-        category: 'SW|FR|GR|Vedtægter|Konkurrence|etc',
-        type: 'Type of document',
-        description: 'Brief description in Danish'
-    }
+    - Kun test-PDF'en er aktiveret lige nu
+    - Du SKAL finde de rigtige URL'er fra svoem.org
+    - URL'erne i eksemplerne ovenfor er IKKE rigtige
+    - Se DOCUMENTS_URLS.md for detaljeret vejledning
+    - Efter opdatering, genindlæs appen (Cmd/Ctrl + Shift + R)
 
-    Instructions:
-    1. Visit https://www.svoem.org/Redskaber/Regler-og-vedtaegter/
-    2. Find the PDF you want to add
-    3. Right-click on the download link and copy the URL
-    4. Add a new object to this array with the details
-    5. Save the file
-    6. The app will automatically index the new document on next load
-
-    Categories:
-    - SW: Swimming rules
-    - FR: Open water rules
-    - GR: General assembly rules
-    - Vedtægter: Statutes
-    - Konkurrence: Competition rules
-    - Coaching: Coaching guidelines
-    - Add your own as needed
+    ===================================================================
     */
 ];
 
