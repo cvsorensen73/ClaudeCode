@@ -1,0 +1,15 @@
+# Configuration files with sensitive credentials
+config.json
+
+# Sync database and logs
+synced-events.json
+sync-log.txt
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS files
+.DS_Store
+Thumbs.db

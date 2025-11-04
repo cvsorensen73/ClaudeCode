@@ -1,0 +1,12 @@
+{
+  "google": {
+    "client_id": "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
+    "client_secret": "YOUR_GOOGLE_CLIENT_SECRET",
+    "refresh_token": "YOUR_REFRESH_TOKEN",
+    "calendar_id": "primary"
+  },
+  "outlook": {
+    "placeholder_text": "Busy",
+    "remove_deleted_events": true
+  }
+}
