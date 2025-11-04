@@ -3,158 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM Lookup Result - Call Center</title>
+    <title>Contact: Jennifer Martinez - Dynamics 365</title>
 </head>
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5;">
+<body style="font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; margin: 0; padding: 0; background-color: #f3f2f1; color: #323130;">
 
-    <div style="max-width: 900px; margin: 0 auto; background-color: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden;">
+    <!-- Top Navigation Bar -->
+    <div style="background-color: #0078d4; color: white; padding: 0; height: 48px; display: flex; align-items: center; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+        <div style="padding: 0 16px; display: flex; align-items: center; width: 100%;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-right: 24px;">
+                <div style="width: 24px; height: 24px; background-color: white; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #0078d4;">D</div>
+                <span style="font-size: 15px; font-weight: 600;">Dynamics 365</span>
+            </div>
+            <div style="flex: 1; display: flex; align-items: center; gap: 20px; font-size: 13px;">
+                <span style="padding: 4px 12px; border-radius: 2px; background-color: rgba(255,255,255,0.1);">Sales</span>
+                <span style="opacity: 0.9;">Service</span>
+                <span style="opacity: 0.9;">Marketing</span>
+            </div>
+            <div style="font-size: 13px; display: flex; align-items: center; gap: 12px;">
+                <span>🔔</span>
+                <span>⚙️</span>
+                <span>Agent: Sarah Johnson</span>
+            </div>
+        </div>
+    </div>
 
-        <!-- Header -->
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px 30px;">
-            <h1 style="margin: 0; font-size: 24px; font-weight: 600;">Customer Lookup Result</h1>
-            <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 14px;">Call received: <span id="callTime">Oct 30, 2025 - 14:32:15</span></p>
+    <!-- Breadcrumb Navigation -->
+    <div style="background-color: white; border-bottom: 1px solid #edebe9; padding: 8px 24px; font-size: 12px; color: #605e5c;">
+        <span style="color: #0078d4; cursor: pointer;">Contacts</span>
+        <span style="margin: 0 6px;">›</span>
+        <span>Jennifer Martinez</span>
+    </div>
+
+    <!-- Main Container -->
+    <div style="max-width: 1400px; margin: 0 auto;">
+
+        <!-- Page Header -->
+        <div style="background-color: white; border-bottom: 1px solid #edebe9; padding: 16px 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #0078d4, #50e6ff); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 600;">JM</div>
+                        <div>
+                            <h1 style="margin: 0; font-size: 20px; font-weight: 600; color: #201f1e;">Jennifer Martinez</h1>
+                            <div style="font-size: 13px; color: #605e5c; margin-top: 2px;">TechVision Solutions Inc.</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button style="background-color: #0078d4; color: white; border: none; padding: 8px 20px; font-size: 14px; cursor: pointer; border-radius: 2px; font-family: 'Segoe UI', sans-serif;">📞 Call</button>
+                    <button style="background-color: white; color: #201f1e; border: 1px solid #8a8886; padding: 8px 20px; font-size: 14px; cursor: pointer; border-radius: 2px; font-family: 'Segoe UI', sans-serif;">✉️ Email</button>
+                    <button style="background-color: white; color: #201f1e; border: 1px solid #8a8886; padding: 8px 20px; font-size: 14px; cursor: pointer; border-radius: 2px; font-family: 'Segoe UI', sans-serif;">⋯</button>
+                </div>
+            </div>
         </div>
 
-        <!-- Status Banner -->
-        <div style="background-color: #10b981; color: white; padding: 12px 30px; font-weight: 500;">
-            <span style="display: inline-block; margin-right: 10px;">&#x2713;</span> Active Customer - Priority Support
+        <!-- Command Bar -->
+        <div style="background-color: #faf9f8; border-bottom: 1px solid #edebe9; padding: 8px 24px; display: flex; gap: 4px; font-size: 13px;">
+            <button style="background-color: transparent; color: #201f1e; border: 1px solid transparent; padding: 6px 12px; cursor: pointer; border-radius: 2px; font-family: 'Segoe UI', sans-serif;">💾 Save</button>
+            <button style="background-color: transparent; color: #201f1e; border: 1px solid transparent; padding: 6px 12px; cursor: pointer; border-radius: 2px; font-family: 'Segoe UI', sans-serif;">🔄 Refresh</button>
+            <button style="background-color: transparent; color: #201f1e; border: 1px solid transparent; padding: 6px 12px; cursor: pointer; border-radius: 2px; font-family: 'Segoe UI', sans-serif;">➕ New Activity</button>
+            <button style="background-color: transparent; color: #201f1e; border: 1px solid transparent; padding: 6px 12px; cursor: pointer; border-radius: 2px; font-family: 'Segoe UI', sans-serif;">📎 Attach</button>
+            <button style="background-color: transparent; color: #201f1e; border: 1px solid transparent; padding: 6px 12px; cursor: pointer; border-radius: 2px; font-family: 'Segoe UI', sans-serif;">✏️ Edit</button>
         </div>
 
-        <!-- Customer Information -->
-        <div style="padding: 30px;">
+        <!-- Tab Navigation -->
+        <div style="background-color: white; border-bottom: 2px solid #edebe9; padding: 0 24px; display: flex; gap: 24px; font-size: 14px;">
+            <div style="padding: 12px 0; border-bottom: 2px solid #0078d4; color: #0078d4; font-weight: 600; margin-bottom: -2px;">Summary</div>
+            <div style="padding: 12px 0; color: #605e5c; cursor: pointer;">Details</div>
+            <div style="padding: 12px 0; color: #605e5c; cursor: pointer;">Activities</div>
+            <div style="padding: 12px 0; color: #605e5c; cursor: pointer;">Opportunities</div>
+            <div style="padding: 12px 0; color: #605e5c; cursor: pointer;">Cases</div>
+        </div>
 
-            <!-- Primary Information -->
-            <div style="margin-bottom: 30px;">
-                <h2 style="margin: 0 0 20px 0; font-size: 18px; color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
-                    Primary Information
-                </h2>
+        <!-- Content Area -->
+        <div style="padding: 24px;">
 
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
-                    <div style="background-color: #f9fafb; padding: 15px; border-radius: 6px; border-left: 4px solid #667eea;">
-                        <div style="font-size: 12px; color: #6b7280; text-transform: uppercase; margin-bottom: 5px; font-weight: 600;">Customer Number</div>
-                        <div style="font-size: 18px; color: #111827; font-weight: 600;">CUS-2024-789456</div>
-                    </div>
-
-                    <div style="background-color: #f9fafb; padding: 15px; border-radius: 6px; border-left: 4px solid #667eea;">
-                        <div style="font-size: 12px; color: #6b7280; text-transform: uppercase; margin-bottom: 5px; font-weight: 600;">Phone Number</div>
-                        <div style="font-size: 18px; color: #111827; font-weight: 600;">+1 (555) 234-5678</div>
-                    </div>
-
-                    <div style="background-color: #f9fafb; padding: 15px; border-radius: 6px; border-left: 4px solid #667eea;">
-                        <div style="font-size: 12px; color: #6b7280; text-transform: uppercase; margin-bottom: 5px; font-weight: 600;">Company Name</div>
-                        <div style="font-size: 18px; color: #111827; font-weight: 600;">TechVision Solutions Inc.</div>
-                    </div>
-
-                    <div style="background-color: #f9fafb; padding: 15px; border-radius: 6px; border-left: 4px solid #667eea;">
-                        <div style="font-size: 12px; color: #6b7280; text-transform: uppercase; margin-bottom: 5px; font-weight: 600;">Contact Name</div>
-                        <div style="font-size: 18px; color: #111827; font-weight: 600;">Jennifer Martinez</div>
-                    </div>
+            <!-- Alert Banner -->
+            <div style="background-color: #fff4ce; border-left: 4px solid #ffb900; padding: 12px 16px; margin-bottom: 20px; border-radius: 2px; display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 16px;">⚠️</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #323130; margin-bottom: 2px;">Incoming Call</div>
+                    <div style="font-size: 13px; color: #323130;">Call received from +1 (555) 234-5678 at Oct 30, 2025 - 14:32:15</div>
                 </div>
             </div>
 
-            <!-- Contact Details -->
-            <div style="margin-bottom: 30px;">
-                <h2 style="margin: 0 0 20px 0; font-size: 18px; color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
-                    Contact Details
-                </h2>
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
 
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
-                    <div>
-                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 5px; font-weight: 600;">Email Address</div>
-                        <div style="font-size: 15px; color: #111827;">j.martinez@techvision.com</div>
+                <!-- Left Column -->
+                <div>
+
+                    <!-- Contact Information Card -->
+                    <div style="background-color: white; border: 1px solid #edebe9; border-radius: 2px; margin-bottom: 20px; box-shadow: 0 1.6px 3.6px rgba(0,0,0,0.13);">
+                        <div style="border-bottom: 1px solid #edebe9; padding: 16px 20px;">
+                            <h2 style="margin: 0; font-size: 16px; font-weight: 600; color: #323130;">Contact Information</h2>
+                        </div>
+                        <div style="padding: 20px;">
+                            <div style="display: grid; grid-template-columns: 180px 1fr; gap: 16px; margin-bottom: 16px;">
+                                <div style="font-size: 13px; color: #605e5c;">Contact ID</div>
+                                <div style="font-size: 13px; color: #201f1e; font-weight: 600;">CUS-2024-789456</div>
+
+                                <div style="font-size: 13px; color: #605e5c;">Business Phone</div>
+                                <div style="font-size: 13px; color: #0078d4; font-weight: 600;">+1 (555) 234-5678</div>
+
+                                <div style="font-size: 13px; color: #605e5c;">Mobile Phone</div>
+                                <div style="font-size: 13px; color: #0078d4; font-weight: 600;">+1 (555) 234-5679</div>
+
+                                <div style="font-size: 13px; color: #605e5c;">Email</div>
+                                <div style="font-size: 13px; color: #0078d4;">j.martinez@techvision.com</div>
+
+                                <div style="font-size: 13px; color: #605e5c;">Job Title</div>
+                                <div style="font-size: 13px; color: #201f1e;">VP of Operations</div>
+
+                                <div style="font-size: 13px; color: #605e5c;">Department</div>
+                                <div style="font-size: 13px; color: #201f1e;">Operations</div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div>
-                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 5px; font-weight: 600;">Alternative Phone</div>
-                        <div style="font-size: 15px; color: #111827;">+1 (555) 234-5679</div>
+                    <!-- Account Information Card -->
+                    <div style="background-color: white; border: 1px solid #edebe9; border-radius: 2px; margin-bottom: 20px; box-shadow: 0 1.6px 3.6px rgba(0,0,0,0.13);">
+                        <div style="border-bottom: 1px solid #edebe9; padding: 16px 20px;">
+                            <h2 style="margin: 0; font-size: 16px; font-weight: 600; color: #323130;">Account Information</h2>
+                        </div>
+                        <div style="padding: 20px;">
+                            <div style="display: grid; grid-template-columns: 180px 1fr; gap: 16px; margin-bottom: 16px;">
+                                <div style="font-size: 13px; color: #605e5c;">Account Name</div>
+                                <div style="font-size: 13px; color: #0078d4; font-weight: 600;">TechVision Solutions Inc.</div>
+
+                                <div style="font-size: 13px; color: #605e5c;">Account Status</div>
+                                <div style="font-size: 13px;">
+                                    <span style="display: inline-block; background-color: #dff6dd; color: #107c10; padding: 2px 8px; border-radius: 2px; font-size: 12px; font-weight: 600;">● Active</span>
+                                </div>
+
+                                <div style="font-size: 13px; color: #605e5c;">Customer Type</div>
+                                <div style="font-size: 13px; color: #201f1e;">Business Premium</div>
+
+                                <div style="font-size: 13px; color: #605e5c;">Industry</div>
+                                <div style="font-size: 13px; color: #201f1e;">Technology</div>
+
+                                <div style="font-size: 13px; color: #605e5c;">Annual Revenue</div>
+                                <div style="font-size: 13px; color: #201f1e;">$15.2M</div>
+
+                                <div style="font-size: 13px; color: #605e5c;">Number of Employees</div>
+                                <div style="font-size: 13px; color: #201f1e;">125</div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div style="grid-column: span 2;">
-                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 5px; font-weight: 600;">Business Address</div>
-                        <div style="font-size: 15px; color: #111827;">1247 Innovation Drive, Suite 300<br>San Francisco, CA 94105, United States</div>
+                    <!-- Address Card -->
+                    <div style="background-color: white; border: 1px solid #edebe9; border-radius: 2px; margin-bottom: 20px; box-shadow: 0 1.6px 3.6px rgba(0,0,0,0.13);">
+                        <div style="border-bottom: 1px solid #edebe9; padding: 16px 20px;">
+                            <h2 style="margin: 0; font-size: 16px; font-weight: 600; color: #323130;">Address</h2>
+                        </div>
+                        <div style="padding: 20px;">
+                            <div style="margin-bottom: 12px;">
+                                <div style="font-size: 12px; color: #605e5c; text-transform: uppercase; margin-bottom: 6px; font-weight: 600;">Business Address</div>
+                                <div style="font-size: 13px; color: #201f1e; line-height: 1.6;">
+                                    1247 Innovation Drive, Suite 300<br>
+                                    San Francisco, CA 94105<br>
+                                    United States
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Timeline Card -->
+                    <div style="background-color: white; border: 1px solid #edebe9; border-radius: 2px; box-shadow: 0 1.6px 3.6px rgba(0,0,0,0.13);">
+                        <div style="border-bottom: 1px solid #edebe9; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;">
+                            <h2 style="margin: 0; font-size: 16px; font-weight: 600; color: #323130;">Timeline</h2>
+                            <button style="background-color: transparent; color: #0078d4; border: none; font-size: 13px; cursor: pointer; font-family: 'Segoe UI', sans-serif;">+ Add activity</button>
+                        </div>
+                        <div style="padding: 20px;">
+
+                            <div style="display: flex; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f3f2f1;">
+                                <div style="width: 32px; height: 32px; background-color: #107c10; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; flex-shrink: 0;">✓</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 13px; color: #201f1e; font-weight: 600; margin-bottom: 4px;">Support Case Resolved</div>
+                                    <div style="font-size: 12px; color: #605e5c; margin-bottom: 4px;">Case #45892 - Software integration issue</div>
+                                    <div style="font-size: 12px; color: #605e5c;">Oct 23, 2025 at 10:15 AM • by Robert Chen</div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f3f2f1;">
+                                <div style="width: 32px; height: 32px; background-color: #0078d4; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; flex-shrink: 0;">📞</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 13px; color: #201f1e; font-weight: 600; margin-bottom: 4px;">Phone Call</div>
+                                    <div style="font-size: 12px; color: #605e5c; margin-bottom: 4px;">Inbound - Product inquiry about new features</div>
+                                    <div style="font-size: 12px; color: #605e5c;">Oct 18, 2025 at 2:45 PM • Duration: 15 min</div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 12px;">
+                                <div style="width: 32px; height: 32px; background-color: #8764b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; flex-shrink: 0;">📄</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 13px; color: #201f1e; font-weight: 600; margin-bottom: 4px;">Contract Renewal</div>
+                                    <div style="font-size: 12px; color: #605e5c; margin-bottom: 4px;">2-year extension completed</div>
+                                    <div style="font-size: 12px; color: #605e5c;">Oct 12, 2025 at 4:20 PM • by Sarah Williams</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
-            </div>
 
-            <!-- Account Information -->
-            <div style="margin-bottom: 30px;">
-                <h2 style="margin: 0 0 20px 0; font-size: 18px; color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
-                    Account Information
-                </h2>
+                <!-- Right Column -->
+                <div>
 
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                    <div>
-                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 5px; font-weight: 600;">Account Status</div>
-                        <div style="display: inline-block; background-color: #d1fae5; color: #065f46; padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 600;">Active</div>
+                    <!-- Quick Stats Card -->
+                    <div style="background-color: white; border: 1px solid #edebe9; border-radius: 2px; margin-bottom: 20px; box-shadow: 0 1.6px 3.6px rgba(0,0,0,0.13);">
+                        <div style="border-bottom: 1px solid #edebe9; padding: 16px 20px;">
+                            <h2 style="margin: 0; font-size: 16px; font-weight: 600; color: #323130;">Key Metrics</h2>
+                        </div>
+                        <div style="padding: 20px;">
+                            <div style="margin-bottom: 20px;">
+                                <div style="font-size: 12px; color: #605e5c; margin-bottom: 6px; text-transform: uppercase; font-weight: 600;">Customer Since</div>
+                                <div style="font-size: 20px; color: #0078d4; font-weight: 600;">Jan 15, 2022</div>
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <div style="font-size: 12px; color: #605e5c; margin-bottom: 6px; text-transform: uppercase; font-weight: 600;">Total Interactions</div>
+                                <div style="font-size: 20px; color: #0078d4; font-weight: 600;">47</div>
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <div style="font-size: 12px; color: #605e5c; margin-bottom: 6px; text-transform: uppercase; font-weight: 600;">Lifetime Value</div>
+                                <div style="font-size: 20px; color: #107c10; font-weight: 600;">$487,500</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: #605e5c; margin-bottom: 6px; text-transform: uppercase; font-weight: 600;">Satisfaction Score</div>
+                                <div style="font-size: 20px; color: #107c10; font-weight: 600;">9.2/10</div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div>
-                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 5px; font-weight: 600;">Customer Since</div>
-                        <div style="font-size: 15px; color: #111827;">January 15, 2022</div>
+                    <!-- Account Manager Card -->
+                    <div style="background-color: white; border: 1px solid #edebe9; border-radius: 2px; margin-bottom: 20px; box-shadow: 0 1.6px 3.6px rgba(0,0,0,0.13);">
+                        <div style="border-bottom: 1px solid #edebe9; padding: 16px 20px;">
+                            <h2 style="margin: 0; font-size: 16px; font-weight: 600; color: #323130;">Account Manager</h2>
+                        </div>
+                        <div style="padding: 20px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #0078d4, #50e6ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; font-weight: 600;">RC</div>
+                                <div>
+                                    <div style="font-size: 14px; color: #201f1e; font-weight: 600;">Robert Chen</div>
+                                    <div style="font-size: 12px; color: #605e5c;">Senior Account Manager</div>
+                                </div>
+                            </div>
+                            <div style="font-size: 13px; color: #605e5c; margin-bottom: 8px;">
+                                📧 robert.chen@company.com
+                            </div>
+                            <div style="font-size: 13px; color: #605e5c;">
+                                📞 +1 (555) 987-6543
+                            </div>
+                        </div>
                     </div>
 
-                    <div>
-                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 5px; font-weight: 600;">Account Type</div>
-                        <div style="font-size: 15px; color: #111827;">Business Premium</div>
+                    <!-- Notes Card -->
+                    <div style="background-color: white; border: 1px solid #edebe9; border-radius: 2px; box-shadow: 0 1.6px 3.6px rgba(0,0,0,0.13);">
+                        <div style="border-bottom: 1px solid #edebe9; padding: 16px 20px;">
+                            <h2 style="margin: 0; font-size: 16px; font-weight: 600; color: #323130;">Notes</h2>
+                        </div>
+                        <div style="padding: 20px;">
+                            <div style="background-color: #fff4ce; border-left: 3px solid #ffb900; padding: 12px; margin-bottom: 12px;">
+                                <div style="font-size: 12px; color: #323130; line-height: 1.5;">
+                                    <strong>Preference:</strong> Customer prefers email communication for non-urgent matters.
+                                </div>
+                            </div>
+                            <div style="background-color: #f3f2f1; padding: 12px; margin-bottom: 12px;">
+                                <div style="font-size: 12px; color: #323130; line-height: 1.5;">
+                                    Very satisfied with service. Decision maker for all technical purchases.
+                                </div>
+                            </div>
+                            <div style="background-color: #deecf9; border-left: 3px solid #0078d4; padding: 12px;">
+                                <div style="font-size: 12px; color: #323130; line-height: 1.5;">
+                                    <strong>Opportunity:</strong> Interested in expanding to additional product lines in Q1 2026.
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div>
-                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 5px; font-weight: 600;">Last Contact Date</div>
-                        <div style="font-size: 15px; color: #111827;">October 23, 2025</div>
-                    </div>
-
-                    <div>
-                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 5px; font-weight: 600;">Total Interactions</div>
-                        <div style="font-size: 15px; color: #111827;">47 calls</div>
-                    </div>
-
-                    <div>
-                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 5px; font-weight: 600;">Account Manager</div>
-                        <div style="font-size: 15px; color: #111827;">Robert Chen</div>
-                    </div>
                 </div>
-            </div>
 
-            <!-- Recent Activity -->
-            <div style="margin-bottom: 20px;">
-                <h2 style="margin: 0 0 20px 0; font-size: 18px; color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
-                    Recent Activity
-                </h2>
-
-                <div style="border-left: 3px solid #e5e7eb; padding-left: 20px;">
-                    <div style="margin-bottom: 15px; position: relative;">
-                        <div style="position: absolute; left: -26px; width: 10px; height: 10px; background-color: #10b981; border-radius: 50%; border: 2px solid white;"></div>
-                        <div style="font-size: 13px; color: #6b7280; margin-bottom: 3px;">Oct 23, 2025 - 10:15 AM</div>
-                        <div style="font-size: 14px; color: #111827; font-weight: 500;">Support ticket #45892 resolved - Software integration issue</div>
-                    </div>
-
-                    <div style="margin-bottom: 15px; position: relative;">
-                        <div style="position: absolute; left: -26px; width: 10px; height: 10px; background-color: #3b82f6; border-radius: 50%; border: 2px solid white;"></div>
-                        <div style="font-size: 13px; color: #6b7280; margin-bottom: 3px;">Oct 18, 2025 - 2:45 PM</div>
-                        <div style="font-size: 14px; color: #111827; font-weight: 500;">Inbound call - Product inquiry about new features</div>
-                    </div>
-
-                    <div style="position: relative;">
-                        <div style="position: absolute; left: -26px; width: 10px; height: 10px; background-color: #8b5cf6; border-radius: 50%; border: 2px solid white;"></div>
-                        <div style="font-size: 13px; color: #6b7280; margin-bottom: 3px;">Oct 12, 2025 - 4:20 PM</div>
-                        <div style="font-size: 14px; color: #111827; font-weight: 500;">Contract renewal completed - 2-year extension</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Notes Section -->
-            <div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 4px; margin-top: 20px;">
-                <div style="font-size: 13px; font-weight: 600; color: #92400e; margin-bottom: 5px;">AGENT NOTE:</div>
-                <div style="font-size: 14px; color: #78350f;">Customer prefers email communication for non-urgent matters. Very satisfied with service. Decision maker for technical purchases.</div>
             </div>
 
         </div>
 
-        <!-- Footer -->
-        <div style="background-color: #f9fafb; padding: 15px 30px; border-top: 1px solid #e5e7eb; text-align: center; color: #6b7280; font-size: 13px;">
-            CRM System v3.2 | Session ID: SES-20251030-143215 | Agent Workstation: WS-047
-        </div>
+    </div>
 
+    <!-- Status Bar -->
+    <div style="position: fixed; bottom: 0; left: 0; right: 0; background-color: #0078d4; color: white; padding: 6px 24px; font-size: 12px; display: flex; justify-content: space-between;">
+        <div>Microsoft Dynamics 365 Sales | v9.2.23104.00195</div>
+        <div>Session ID: SES-20251030-143215 | Workstation: WS-047</div>
     </div>
 
 </body>
